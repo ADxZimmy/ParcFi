@@ -4,7 +4,7 @@
 
 - Phase 001: Thesis lock and Checkpoint 2
   Outcome: A differentiated DeFi-track pitch, public repository, contract specification, and credible progress update submitted by 2026-07-26.
-  Status: Planned
+  Status: In progress (repo artifacts done 2026-07-24; founder submission pending)
 
 - Phase 002: Settlement contract core
   Outcome: Tested Arc-compatible contract supports independent line-item funding, attestation, challenge, release, dispute, claim, expiry, and refund.

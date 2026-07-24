@@ -1,0 +1,43 @@
+{
+  "$comment": "Synthetic demo fixture only. No real shipment, party, or commercial data. Amounts are 6-decimal Arc USDC units as strings.",
+  "invoiceId": "PARCFI-DEMO-0001",
+  "currency": "USDC",
+  "decimals": 6,
+  "documentHashAlgo": "keccak256",
+  "roles": ["payer", "attestor", "resolver", "carrier", "terminal", "forwarder"],
+  "requiredTotal": "10000000000",
+  "lineItems": [
+    {
+      "obligationId": 0,
+      "label": "Base ocean freight",
+      "beneficiaryRole": "carrier",
+      "amount": "7500000000",
+      "requiredEvidenceType": "SIGNED_POD",
+      "challengeDurationSeconds": 120
+    },
+    {
+      "obligationId": 1,
+      "label": "Port handling",
+      "beneficiaryRole": "terminal",
+      "amount": "1500000000",
+      "requiredEvidenceType": "PORT_RECEIPT",
+      "challengeDurationSeconds": 120
+    },
+    {
+      "obligationId": 2,
+      "label": "Demurrage",
+      "beneficiaryRole": "forwarder",
+      "amount": "1000000000",
+      "requiredEvidenceType": "DEMURRAGE_STATEMENT",
+      "challengeDurationSeconds": 120
+    }
+  ],
+  "demoScript": {
+    "challengeObligationIds": [2],
+    "resolution": {
+      "obligationId": 2,
+      "amountToBeneficiary": "600000000",
+      "amountToPayer": "400000000"
+    }
+  }
+}
