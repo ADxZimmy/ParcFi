@@ -4,7 +4,7 @@ Last updated: 2026-07-24
 
 ## Current Focus
 
-Phase 002 execution: contract core is implemented and green on Opus 4.8 (Medium tier); the fuzz/invariant suite and the G1 security review are the remaining High-tier (Fable 5) steps. In parallel, the founder still submits Checkpoint 2 from the Encode account by 2026-07-26 18:00 WAT.
+Phase 002 is complete (contract, 74 tests, G1 review). Next: founder submits Checkpoint 2 by 2026-07-26 18:00 WAT, then Phase 003 (end-to-end Arc product) on Opus 4.8.
 
 ## Completed
 
@@ -20,10 +20,10 @@ Phase 002 execution: contract core is implemented and green on Opus 4.8 (Medium 
 - Patched three planning gaps (2026-07-24): CI steps in Phases 002/003, interview slip fallback, and explicit demo-wallet USDC/gas funding step.
 - Executed Phase 001 repo work (2026-07-24): contract specification (`contracts/SPEC.md`) and full Solidity interface (`IParcFiEscrow.sol`); Foundry scaffold (`foundry.toml`, golden-path test names); synthetic invoice fixture; judge-readable root README (thesis, differentiation table, golden path, architecture, honest limitations); interview kit (`.planning/INTERVIEWS.md`); paste-ready Checkpoint 2 draft (`phases/001-initial-phase/CHECKPOINT2.md`).
 - Executed Phase 002 Medium-tier work (2026-07-24, Opus 4.8): installed Foundry v1.7.1; vendored forge-std + OpenZeppelin v5.1.0; implemented `ParcFiEscrow.sol` (T1–T10) against the spec with `SafeERC20`, `ReentrancyGuard`, and checks-effects-interactions; wrote `MockUSDC` (6-decimal, blocklist) and 66 tests (unit, negative-path, boundary, isolation, golden path) — all green; added GitHub Actions CI (`forge fmt`/`build`/`test`), exported the ABI to `packages/shared/abi/`, and recorded `.gas-snapshot`.
+- Closed Phase 002 High-tier work (2026-07-24, Fable 5): G1 adversarial review found and fixed G1-F1 (fund-after-reclaim stranded deposits and broke conservation — medium severity) and documented five informational findings in SPEC.md; built the invariant suite (10-actor handler over all T1–T10 with time warping, fail-on-revert, ghost accounting) proving solvency-exact, two-regime conservation, locked-vs-open consistency, and terminal-status stickiness across 128×64 campaigns; added three stateless fuzz properties; proved test power by mutation (guard removed → regression + all 4 campaigns fail; restored → 74/74 green).
 
 ## In Progress
 
-- Phase 002 High-tier steps (require Fable 5): the fuzz/invariant suite (step 9) and the G1 adversarial contract security review before Phase 003 builds on the contract.
 - Founder Encode-account actions for Checkpoint 2: create/confirm the project page (DeFi track), paste the CHECKPOINT2.md update with the repo link, submit, screenshot.
 - Scheduling the first two customer interviews from the kit.
 
@@ -35,7 +35,7 @@ Phase 002 execution: contract core is implemented and green on Opus 4.8 (Medium 
 
 ## Next Action
 
-Switch to Fable 5 (`/model claude-fable-5`) for the Phase 002 High-tier close: write the fuzz/invariant suite under `contracts/test/invariant/` (value conservation, no double claim/refund, obligation isolation, unbounded actors) and run the G1 adversarial security review of `ParcFiEscrow.sol`. In parallel, founder submits Checkpoint 2 using `.planning/phases/001-initial-phase/CHECKPOINT2.md`.
+Founder: submit Checkpoint 2 using `.planning/phases/001-initial-phase/CHECKPOINT2.md` (the progress update can now also mention: contract implemented, 74 tests including invariant campaigns, security review complete). Then start Phase 003 on Opus 4.8 (`/model claude-opus-4-8`): web app scaffold, Circle wallet onboarding, demo-wallet funding, Circle Contracts deployment per `.planning/phases/003-end-to-end-arc/PLAN.md`.
 
 Repository: https://github.com/ADxZimmy/ParcFi
 Local toolchain: Foundry v1.7.1 installed at `~/.foundry/bin` (add to PATH: `export PATH="$HOME/.foundry/bin:$PATH"`). Dependencies vendored in `contracts/lib/` (gitignored; re-clone with the two `git clone` commands in the CI workflow).

@@ -77,7 +77,7 @@ stateDiagram-v2
 | # | Function | Caller | Preconditions | Effects | Event |
 |---|---|---|---|---|---|
 | T1 | `createAgreement(docHash, attestor, resolver, expiry, ObligationInput[])` | anyone (becomes payer) | `1 ≤ n ≤ 16`; every amount > 0; no zero addresses; `expiry > now`; every `challengeDuration` in `[MIN_CHALLENGE, MAX_CHALLENGE]` | Agreement stored; all obligations `Pending`; `requiredTotal = Σ amounts` | `AgreementCreated` + `ObligationCreated` per line |
-| T2 | `fund(id, amount)` | payer | `amount > 0`; `fundedTotal + amount ≤ requiredTotal` (over-funding reverts — see Funding) | `fundedTotal += amount`; if now equal to `requiredTotal`: `fullyFunded = true`, `locked = requiredTotal` | `Funded`, then `FullyFunded` when latched |
+| T2 | `fund(id, amount)` | payer | `amount > 0`; `fundedTotal + amount ≤ requiredTotal` (over-funding reverts — see Funding); no obligation is `Expired` (a T8-reclaimed agreement never accepts deposits again — obligation 0 is a sufficient sentinel) | `fundedTotal += amount`; if now equal to `requiredTotal`: `fullyFunded = true`, `locked = requiredTotal` | `Funded`, then `FullyFunded` when latched |
 | T3 | `attest(id, oid, evidenceHash, evidenceType)` | attestor | status `Pending`; `fullyFunded`; `now < expiry`; `evidenceType == requiredEvidenceType`; `evidenceHash != 0` | status `Attested`; record hash; `challengeDeadline = now + challengeDuration` | `Attested` |
 | T4 | `challenge(id, oid)` | payer | status `Attested`; `now < challengeDeadline` | status `Challenged` | `Challenged` |
 | T5 | `finalizeObligation(id, oid)` | anyone | status `Attested`; `now ≥ challengeDeadline` | status `Finalized`; `locked -= amount`; `claimable[id][beneficiary] += amount` | `ObligationFinalized` |
@@ -94,6 +94,9 @@ Boundary rule (NF-05 test target): challenge requires strictly `now < challengeD
 - The payer funds cumulatively; deposits that would exceed `requiredTotal` revert with `OverFunding`. This removes surplus tracking entirely: there is never unallocated value inside an agreement (NF-01 test: over-funding reverts, F-03 partial funding is visible as `fundedTotal < requiredTotal`).
 - Attestation requires full funding. Therefore an under-funded agreement can only ever contain `Pending` obligations, which is what makes T8's whole-balance reclaim safe.
 - Direct USDC transfers to the contract (donations) are not credited to any agreement and are unrecoverable by design; internal accounting never reads raw balance.
+- A reclaimed agreement (T8) is closed to further deposits (G1-F1): without this rule a later deposit could latch `fullyFunded` against terminally `Expired` obligations and lock the deposit forever.
+- Funding after `expiry` on a never-reclaimed agreement is permitted and safe: if it latches, obligations are still `Pending`, so T7 + T10 return every unit to the payer. Wasteful but fully recoverable (G1-F2, documented behavior).
+- The token is assumed to transfer exact amounts (no fee-on-transfer); true for USDC.
 
 ### Expiry semantics
 
@@ -129,6 +132,8 @@ event Claimed(uint256 indexed agreementId, address indexed beneficiary, uint256 
 event RefundWithdrawn(uint256 indexed agreementId, address indexed payer, uint256 amount);
 event UnfundedReclaimed(uint256 indexed agreementId, uint256 amount);
 ```
+
+Indexer note (G1-F4): T8 emits one `ObligationExpired` per line carrying the obligation's *face* amount, while the actual money returned is `fundedTotal` (which can be smaller). `UnfundedReclaimed` is the money-authoritative event; per-line `ObligationExpired` events under T8 are status markers only.
 
 ## Custom Errors
 
@@ -169,3 +174,5 @@ Per the working agreement in `.planning/PROJECT.md`, agreement-level status is c
 - Evidence hashes prove integrity, not truth, delivery, or authority (`.planning/RESEARCH.md`).
 - Amounts and addresses are public on Arc Testnet; no privacy claims.
 - No fees, no upgradeability, no multi-token support — deliberate MVP bounds.
+- Roles are not required to be distinct (a payer could name itself attestor or resolver). The demo uses distinct parties; production needs governance rules for role separation (G1-F3).
+- `docHash` may be zero — it is anchored metadata only and gates nothing (G1-F5).

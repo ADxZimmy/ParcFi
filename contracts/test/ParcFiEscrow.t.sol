@@ -589,6 +589,36 @@ contract ParcFiEscrowTest is BaseTest {
         escrow.reclaimUnfunded(id);
     }
 
+    /// @notice G1-F1 regression: a reclaimed agreement must never accept deposits again.
+    ///         Without the guard, fund() could latch fullyFunded against terminally
+    ///         Expired obligations and strand the new deposit forever.
+    function test_Fund_RevertsAfterReclaim() public {
+        uint256 id = _createGolden();
+        vm.prank(payer);
+        escrow.fund(id, BASE_FREIGHT); // partial: 7,500 of 10,000
+        vm.warp(expiry);
+        vm.prank(payer);
+        escrow.reclaimUnfunded(id);
+
+        // Topping up to the exact required total must revert...
+        vm.prank(payer);
+        vm.expectRevert(IParcFiEscrow.InvalidStatus.selector);
+        escrow.fund(id, PORT_HANDLING + DEMURRAGE);
+
+        // ...as must any other deposit.
+        vm.prank(payer);
+        vm.expectRevert(IParcFiEscrow.InvalidStatus.selector);
+        escrow.fund(id, 1);
+
+        // The agreement stays in its reclaimed terminal shape: nothing latched,
+        // nothing locked, conservation intact, no value inside the contract.
+        IParcFiEscrow.Agreement memory a = escrow.getAgreement(id);
+        assertFalse(a.fullyFunded);
+        assertEq(a.locked, 0);
+        assertEq(a.cumulativeRefunded, BASE_FREIGHT);
+        assertEq(usdc.balanceOf(address(escrow)), 0);
+    }
+
     function test_Reclaim_CannotBeCalledTwice() public {
         uint256 id = _createGolden();
         vm.prank(payer);

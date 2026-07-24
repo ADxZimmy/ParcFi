@@ -8,7 +8,7 @@
 
 - Phase 002: Settlement contract core
   Outcome: Tested Arc-compatible contract supports independent line-item funding, attestation, challenge, release, dispute, claim, expiry, and refund.
-  Status: In progress (2026-07-24 — contract + 66 unit/negative/golden-path tests green, CI + ABI + gas snapshot done; fuzz/invariant suite and G1 security review pending the Fable 5 pass)
+  Status: Done (2026-07-24 — 74 tests green: unit, negative-path, fuzz, and 4 invariant campaigns; G1 security review complete, one medium defect found and fixed with mutation-test-proven coverage)
 
 ## Next
 

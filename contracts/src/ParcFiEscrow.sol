@@ -107,6 +107,11 @@ contract ParcFiEscrow is IParcFiEscrow, ReentrancyGuard {
         if (msg.sender != a.payer) revert NotPayer();
         if (amount == 0) revert ZeroAmount();
         if (a.fullyFunded) revert AlreadyFullyFunded();
+        // G1-F1: a reclaimed agreement (T8) must never accept new deposits — its
+        // obligations are all terminally Expired, so any later latch would lock value
+        // forever. Pre-full-funding T8 is the only status-flipping transition, so
+        // obligation 0 is a sufficient sentinel.
+        if (_obligationsOf[agreementId][0].status != ObligationStatus.Pending) revert InvalidStatus();
 
         uint256 newFunded = a.fundedTotal + amount;
         if (newFunded > a.requiredTotal) revert OverFunding();
