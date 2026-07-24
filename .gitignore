@@ -1,0 +1,25 @@
+# Dependencies and builds
+node_modules/
+dist/
+build/
+.next/
+out/
+cache/
+artifacts/
+broadcast/
+lib/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Tooling and OS files
+.turbo/
+.vercel/
+coverage/
+.DS_Store
+Thumbs.db
+
