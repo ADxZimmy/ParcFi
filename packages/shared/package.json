@@ -1,0 +1,20 @@
+{
+  "name": "@parcfi/shared",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Shared ABI, types, chain configs, status derivation, and fixtures for ParcFi",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  }
+}

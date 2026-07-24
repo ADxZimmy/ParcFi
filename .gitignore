@@ -3,11 +3,12 @@ node_modules/
 dist/
 build/
 .next/
-out/
-cache/
+/contracts/out/
+/contracts/cache/
+/contracts/lib/
 artifacts/
 broadcast/
-lib/
+*.tsbuildinfo
 
 # Local configuration and secrets
 .env
@@ -22,4 +23,3 @@ lib/
 coverage/
 .DS_Store
 Thumbs.db
-

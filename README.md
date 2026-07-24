@@ -68,18 +68,18 @@ Per-obligation lifecycle: `Pending → Attested → (Challenged → Resolved) | 
 | Date | Milestone | Status |
 |---|---|---|
 | 2026-07-26 | Checkpoint 2 — thesis, spec, scaffold, this repo | In progress |
-| 2026-07-30 | Contract core: Foundry unit + fuzz + invariant suites green | Planned |
-| 2026-08-04 | End-to-end demo on Arc Testnet (wallets, UI, explorer links) | Planned |
+| 2026-07-30 | Contract core: Foundry unit + fuzz + invariant suites green | **Done early** (74 tests + adversarial security review, 07-24) |
+| 2026-08-04 | End-to-end demo on Arc Testnet (wallets, UI, explorer links) | In progress — golden path verified locally; Arc deployment next |
 | 2026-08-08 | Hardening, deck, 3-minute video, final submission (internal deadline) | Planned |
 
 Project memory, research, and phase plans live in [.planning/](.planning/) — start with [RESEARCH.md](.planning/RESEARCH.md) for the validation evidence and competitive analysis.
 
 ## Repository layout
 
-- [contracts/](contracts/) — Foundry project: [SPEC.md](contracts/SPEC.md), interface, golden-path test scaffold.
-- [apps/web/](apps/web/) — Next.js demo app (Phase 003).
-- [packages/shared/](packages/shared/) — shared ABI, types, and the [synthetic invoice fixture](packages/shared/fixtures/golden-path-invoice.json).
-- [.planning/](.planning/) — GSD project memory: research, requirements, roadmap, phase plans.
+- [contracts/](contracts/) — Foundry project: [SPEC.md](contracts/SPEC.md), `ParcFiEscrow.sol`, 74 tests (unit, fuzz, invariant campaigns), security-review record.
+- [apps/web/](apps/web/) — Next.js demo app — the full golden path works locally against anvil; [run it in four commands](apps/web/README.md).
+- [packages/shared/](packages/shared/) — generated ABI, typed chain/status/format helpers, and the [synthetic invoice fixture](packages/shared/fixtures/golden-path-invoice.json).
+- [.planning/](.planning/) — GSD project memory: research, requirements, roadmap, phase plans, verification records.
 
 ## Honest limitations
 

@@ -1,0 +1,20 @@
+{
+  "name": "parcfi",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Programmable settlement for freight-invoice exceptions on Arc",
+  "workspaces": [
+    "packages/shared",
+    "apps/web"
+  ],
+  "scripts": {
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "dev": "npm run dev --workspace apps/web"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

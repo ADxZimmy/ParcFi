@@ -1,0 +1,977 @@
+// Generated from packages/shared/abi/ParcFiEscrow.json - do not edit by hand.
+// Regenerate: forge inspect src/ParcFiEscrow.sol:ParcFiEscrow abi --json (from contracts/).
+export const parcFiEscrowAbi = [
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "usdc_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "MAX_CHALLENGE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_OBLIGATIONS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MIN_CHALLENGE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "agreementCount",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "attest",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "evidenceHash",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "evidenceType",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "challenge",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claim",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claimableOf",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "createAgreement",
+    "inputs": [
+      {
+        "name": "docHash",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "attestor",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "resolver",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "expiry",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "obligations",
+        "type": "tuple[]",
+        "internalType": "struct IParcFiEscrow.ObligationInput[]",
+        "components": [
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "requiredEvidenceType",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "challengeDuration",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "expireObligation",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "finalizeObligation",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "fund",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getAgreement",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IParcFiEscrow.Agreement",
+        "components": [
+          {
+            "name": "payer",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "attestor",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "resolver",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "docHash",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "expiry",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "obligationCount",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "fullyFunded",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "requiredTotal",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "fundedTotal",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "locked",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "cumulativeClaimed",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "cumulativeRefunded",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getObligation",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IParcFiEscrow.Obligation",
+        "components": [
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "requiredEvidenceType",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "challengeDuration",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IParcFiEscrow.ObligationStatus"
+          },
+          {
+            "name": "evidenceHash",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "attestedAt",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "challengeDeadline",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "reclaimUnfunded",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "refundableOf",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "resolve",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "amountToBeneficiary",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "usdc",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "withdrawRefund",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "AgreementCreated",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "payer",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "attestor",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "resolver",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "docHash",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "expiry",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "requiredTotal",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationCount",
+        "type": "uint16",
+        "indexed": false,
+        "internalType": "uint16"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Attested",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "evidenceHash",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "evidenceType",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "challengeDeadline",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Challenged",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Claimed",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "beneficiary",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FullyFunded",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Funded",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "fundedTotal",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ObligationCreated",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "beneficiary",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "requiredEvidenceType",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "challengeDuration",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ObligationExpired",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ObligationFinalized",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "beneficiary",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ObligationResolved",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "obligationId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "amountToBeneficiary",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "amountToPayer",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RefundWithdrawn",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "payer",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "UnfundedReclaimed",
+    "inputs": [
+      {
+        "name": "agreementId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "AlreadyFullyFunded",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ChallengeWindowClosed",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ChallengeWindowOpen",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "DurationOutOfBounds",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EvidenceTypeMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Expired",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ExpiryNotInFuture",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidStatus",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NoObligations",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotAttestor",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotFullyFunded",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotPayer",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotResolver",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotYetExpired",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NothingToWithdraw",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OverFunding",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ReentrancyGuardReentrantCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SafeERC20FailedOperation",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SplitExceedsAmount",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "TooManyObligations",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "UnknownAgreement",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "UnknownObligation",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroAddress",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroAmount",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroEvidenceHash",
+    "inputs": []
+  }
+] as const;

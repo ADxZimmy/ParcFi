@@ -14,7 +14,7 @@
 
 - Phase 003: End-to-end Arc product
   Outcome: Circle wallets, Circle Contracts deployment, Arc Testnet USDC, and a usable web flow complete the golden-path demo.
-  Status: Planned
+  Status: In progress (2026-07-24 — web app built and golden path verified in-browser against local anvil; toolchain + CI green. Founder-gated: Circle account for Contracts/Wallets, faucet funding, Arc Testnet run)
 
 - Phase 004: Hardening and submission
   Outcome: Negative-path UAT, optional bridge integration, public docs, deck, and three-minute demo are complete and submitted one day early.

@@ -4,7 +4,7 @@ Last updated: 2026-07-24
 
 ## Current Focus
 
-Phase 002 is complete (contract, 74 tests, G1 review). Next: founder submits Checkpoint 2 by 2026-07-26 18:00 WAT, then Phase 003 (end-to-end Arc product) on Opus 4.8.
+Phase 003 build: the web demo works end-to-end locally (golden path verified in-browser). Remaining: founder-side Circle account + faucet funding, then the Arc Testnet run. Checkpoint 2 submission still due 2026-07-26 18:00 WAT.
 
 ## Completed
 
@@ -21,6 +21,7 @@ Phase 002 is complete (contract, 74 tests, G1 review). Next: founder submits Che
 - Executed Phase 001 repo work (2026-07-24): contract specification (`contracts/SPEC.md`) and full Solidity interface (`IParcFiEscrow.sol`); Foundry scaffold (`foundry.toml`, golden-path test names); synthetic invoice fixture; judge-readable root README (thesis, differentiation table, golden path, architecture, honest limitations); interview kit (`.planning/INTERVIEWS.md`); paste-ready Checkpoint 2 draft (`phases/001-initial-phase/CHECKPOINT2.md`).
 - Executed Phase 002 Medium-tier work (2026-07-24, Opus 4.8): installed Foundry v1.7.1; vendored forge-std + OpenZeppelin v5.1.0; implemented `ParcFiEscrow.sol` (T1–T10) against the spec with `SafeERC20`, `ReentrancyGuard`, and checks-effects-interactions; wrote `MockUSDC` (6-decimal, blocklist) and 66 tests (unit, negative-path, boundary, isolation, golden path) — all green; added GitHub Actions CI (`forge fmt`/`build`/`test`), exported the ABI to `packages/shared/abi/`, and recorded `.gas-snapshot`.
 - Closed Phase 002 High-tier work (2026-07-24, Fable 5): G1 adversarial review found and fixed G1-F1 (fund-after-reclaim stranded deposits and broke conservation — medium severity) and documented five informational findings in SPEC.md; built the invariant suite (10-actor handler over all T1–T10 with time warping, fail-on-revert, ghost accounting) proving solvency-exact, two-regime conservation, locked-vs-open consistency, and terminal-status stickiness across 128×64 campaigns; added three stateless fuzz properties; proved test power by mutation (guard removed → regression + all 4 campaigns fail; restored → 74/74 green).
+- Built Phase 003 machine-side work (2026-07-24): npm workspaces; `@parcfi/shared` (typed ABI, Arc chain config incl. chain id 5042002 / RPC / Arcscan / USDC 0x3600…0000, status derivation, USDC formatting, fixture — 9 unit tests); Next.js demo app (role-switching six demo accounts, per-line statuses with countdowns, fund/attest/dispute/release/resolve/claim/refund actions, event-sourced activity log, explorer links, demo reset, anvil time-skip); deploy scripts (`DeployLocal.s.sol`, `DeployArc.s.sol` fallback; Circle Contracts documented as primary); web CI. Golden path executed in the real browser against anvil: agreement ended Settled with claimed $9,600 + refunded $400 = funded $10,000.
 
 ## In Progress
 
@@ -35,7 +36,7 @@ Phase 002 is complete (contract, 74 tests, G1 review). Next: founder submits Che
 
 ## Next Action
 
-Founder: submit Checkpoint 2 using `.planning/phases/001-initial-phase/CHECKPOINT2.md` (the progress update can now also mention: contract implemented, 74 tests including invariant campaigns, security review complete). Then start Phase 003 on Opus 4.8 (`/model claude-opus-4-8`): web app scaffold, Circle wallet onboarding, demo-wallet funding, Circle Contracts deployment per `.planning/phases/003-end-to-end-arc/PLAN.md`.
+Founder, in order: (1) submit Checkpoint 2 (`CHECKPOINT2.md` — can now claim: contract + 74 tests + security review + working local demo); (2) create the Circle developer account and an Arc Testnet deployer wallet, get faucet USDC (https://faucet.circle.com); (3) deploy via Circle Contracts (blockchain `ARC-TESTNET`, bytecode/ABI from `contracts/out` + `packages/shared/abi`) or run `DeployArc.s.sol` as fallback; (4) generate six burner keys, fund the payer, fill `apps/web/.env.local` per `apps/web/README.md`. Then the next session runs the Arc Testnet golden path and captures Arcscan evidence.
 
 Repository: https://github.com/ADxZimmy/ParcFi
 Local toolchain: Foundry v1.7.1 installed at `~/.foundry/bin` (add to PATH: `export PATH="$HOME/.foundry/bin:$PATH"`). Dependencies vendored in `contracts/lib/` (gitignored; re-clone with the two `git clone` commands in the CI workflow).
