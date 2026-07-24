@@ -4,7 +4,7 @@ Last updated: 2026-07-24
 
 ## Current Focus
 
-Phase 001 execution: repo-side artifacts are complete; the founder submits Checkpoint 2 from the Encode account by 2026-07-26 18:00 WAT.
+Phase 002 execution: contract core is implemented and green on Opus 4.8 (Medium tier); the fuzz/invariant suite and the G1 security review are the remaining High-tier (Fable 5) steps. In parallel, the founder still submits Checkpoint 2 from the Encode account by 2026-07-26 18:00 WAT.
 
 ## Completed
 
@@ -19,9 +19,11 @@ Phase 001 execution: repo-side artifacts are complete; the founder submits Check
 - Added `.planning/MODEL-POLICY.md` and per-phase Model Routing sections (Fable 5 for high-reasoning/security-critical steps and gates G1–G3, Opus 4.8 for spec-following work, optional light tier for mechanical steps).
 - Patched three planning gaps (2026-07-24): CI steps in Phases 002/003, interview slip fallback, and explicit demo-wallet USDC/gas funding step.
 - Executed Phase 001 repo work (2026-07-24): contract specification (`contracts/SPEC.md`) and full Solidity interface (`IParcFiEscrow.sol`); Foundry scaffold (`foundry.toml`, golden-path test names); synthetic invoice fixture; judge-readable root README (thesis, differentiation table, golden path, architecture, honest limitations); interview kit (`.planning/INTERVIEWS.md`); paste-ready Checkpoint 2 draft (`phases/001-initial-phase/CHECKPOINT2.md`).
+- Executed Phase 002 Medium-tier work (2026-07-24, Opus 4.8): installed Foundry v1.7.1; vendored forge-std + OpenZeppelin v5.1.0; implemented `ParcFiEscrow.sol` (T1–T10) against the spec with `SafeERC20`, `ReentrancyGuard`, and checks-effects-interactions; wrote `MockUSDC` (6-decimal, blocklist) and 66 tests (unit, negative-path, boundary, isolation, golden path) — all green; added GitHub Actions CI (`forge fmt`/`build`/`test`), exported the ABI to `packages/shared/abi/`, and recorded `.gas-snapshot`.
 
 ## In Progress
 
+- Phase 002 High-tier steps (require Fable 5): the fuzz/invariant suite (step 9) and the G1 adversarial contract security review before Phase 003 builds on the contract.
 - Founder Encode-account actions for Checkpoint 2: create/confirm the project page (DeFi track), paste the CHECKPOINT2.md update with the repo link, submit, screenshot.
 - Scheduling the first two customer interviews from the kit.
 
@@ -33,9 +35,10 @@ Phase 001 execution: repo-side artifacts are complete; the founder submits Check
 
 ## Next Action
 
-Founder: submit Checkpoint 2 from the Encode project page using `.planning/phases/001-initial-phase/CHECKPOINT2.md`, capture the confirmation screenshot, then start Phase 002 (install Foundry, implement `ParcFiEscrow` against `contracts/SPEC.md`).
+Switch to Fable 5 (`/model claude-fable-5`) for the Phase 002 High-tier close: write the fuzz/invariant suite under `contracts/test/invariant/` (value conservation, no double claim/refund, obligation isolation, unbounded actors) and run the G1 adversarial security review of `ParcFiEscrow.sol`. In parallel, founder submits Checkpoint 2 using `.planning/phases/001-initial-phase/CHECKPOINT2.md`.
 
 Repository: https://github.com/ADxZimmy/ParcFi
+Local toolchain: Foundry v1.7.1 installed at `~/.foundry/bin` (add to PATH: `export PATH="$HOME/.foundry/bin:$PATH"`). Dependencies vendored in `contracts/lib/` (gitignored; re-clone with the two `git clone` commands in the CI workflow).
 
 ## Verification Snapshot
 
@@ -53,5 +56,7 @@ Repository: https://github.com/ADxZimmy/ParcFi
   Result: Arc Testnet live, Circle Contracts custom deployment on Arc, Circle Wallets + Gas Station on Arc Testnet, final submission 2026-08-09, DeFi + Agentic tracks, judging language ("quality of execution over complexity", Circle tools, production viability), and 3-minute video requirement all confirmed. Not publicly verifiable: exact Checkpoint 2 date (behind Encode participant login — confirm from the account) and CargoEscrow's self-reported feature claims. CargoBill confirmed live. Note: Arc docs appear under docs.arc.network as well as docs.arc.io — re-check all README/deck links before submission.
 - Check: Checkpoint 2 requirements (participant screenshot of hackathon page, 2026-07-24)
   Result: Checkpoint 2 confirmed as Sunday 26 July — "mid-submission — repository link and progress summary"; FAQ: "a mid-hackathon progress update with your repo and presentation links." Checkpoints 1 and 2 can be placeholders; only the final checkpoint must be complete. Checkpoint 1 (Sunday 19 July) was create-project/add-team/share-idea.
+- Command: `forge fmt --check && forge build && forge test` (2026-07-24, Foundry v1.7.1)
+  Result: fmt clean; build successful (`via_ir = true`); 66 tests passed, 0 failed, 0 skipped.
 - Check: Planning consistency review (2026-07-24)
   Result: Dates, requirement-to-phase traceability (F-01..F-14, NF-01..NF-09 all covered), scope discipline, and rollback paths are consistent. Three gaps found and patched same day: CI steps added (Phase 002 step 11 for the Foundry suite, Phase 003 step 1 extends CI with web checks), the eight-interview target now carries an explicit non-blocking fallback (Phase 003 step 9), and demo-wallet USDC/gas funding is now an explicit step with refill procedure and backup wallet (Phase 003 step 3).
