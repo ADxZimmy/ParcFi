@@ -64,4 +64,5 @@ ParcFi settles freight-service invoice obligations. It is not:
 - Keep documents and PII offchain; anchor hashes only.
 - Preserve six-decimal application accounting and never compare it directly with Arc's 18-decimal native gas representation.
 - Treat unvalidated commercial numbers as hypotheses, not pitch facts.
+- Route AI-assisted work by reasoning depth per `.planning/MODEL-POLICY.md`: Fable 5 for high-reasoning and money/security-critical steps and review gates, Opus 4.8 for spec-following implementation, an optional light tier for mechanical work.
 - Update `STATE.md` after meaningful execution or verification.

@@ -20,3 +20,7 @@ Turn the verified contract into a complete Arc Testnet product demo using Circle
   Mitigation: Server-only environment variables, redacted logs, `.env.example`, and secret scanning.
 - Risk: Event indexing becomes a backend project.
   Mitigation: Query bounded agreement events directly; no custom indexer for the hackathon.
+- Risk: Demo wallets run out of Arc Testnet USDC or gas during rehearsal or judging.
+  Mitigation: Scripted faucet/refill procedure, Gas Station sponsorship for user operations, and one pre-funded backup wallet.
+- Risk: Interviews slip behind the build.
+  Mitigation: Interviews never block demo work; if fewer than eight complete by the freeze, all commercial claims stay hypothesis-labeled.

@@ -29,6 +29,18 @@ Excluded:
 9. Submit the repository link and a progress summary that names completed research, architecture, and the next two milestones.
 10. Save a screenshot/copy of the submitted checkpoint and update `STATE.md`.
 
+## Model Routing
+
+Per `.planning/MODEL-POLICY.md`. High = Fable 5, Medium = Opus 4.8, Low = Sonnet 5/Haiku 4.5.
+
+| Steps | Tier | Why |
+|---|---|---|
+| 6 | High | The contract specification (roles, states, events, errors, invariants, obligation bound, USDC interface) is the design decision every later phase builds on. |
+| 2, 3, 4, 7, 9 | Medium | Judge-facing copy, README/architecture, test scaffold, and progress summary follow decisions already made in research. |
+| 1, 5, 8, 10 | Low | Account/admin actions (founder-driven; model drafts text only), directory scaffolding, interview-list assembly, record-keeping. |
+
+Escalation: if step 6 surfaces a state-machine ambiguity, resolve it on High before drafting any dependent copy.
+
 ## Verification
 
 - Check: Project page
