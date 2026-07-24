@@ -14,6 +14,7 @@ Lock the invoice-exception thesis and prepare the 2026-07-26 Checkpoint 2 submis
 - Rejected the broad "stablecoin freight payments/escrow" concept as insufficiently differentiated.
 - Defined the narrower ParcFi wedge: release clean freight invoice lines and hold only disputed exceptions.
 - Planned four deadline-driven hackathon phases plus post-hackathon validation gates.
+- Initialized Git, created the public GitHub repository, and pushed `main`.
 
 ## In Progress
 
@@ -27,6 +28,8 @@ Lock the invoice-exception thesis and prepare the 2026-07-26 Checkpoint 2 submis
 ## Next Action
 
 Apply/create the Encode project immediately, choose the DeFi track, publish the one-sentence thesis and repository, and complete Phase 001 by 2026-07-26 18:00 WAT.
+
+Repository: https://github.com/ADxZimmy/ParcFi
 
 ## Verification Snapshot
 
