@@ -36,7 +36,13 @@ Phase 003 build: the web demo works end-to-end locally (golden path verified in-
 
 ## Next Action
 
-Founder, in order: (1) submit Checkpoint 2 (`CHECKPOINT2.md` — can now claim: contract + 74 tests + security review + working local demo); (2) create the Circle developer account and an Arc Testnet deployer wallet, get faucet USDC (https://faucet.circle.com); (3) deploy via Circle Contracts (blockchain `ARC-TESTNET`, bytecode/ABI from `contracts/out` + `packages/shared/abi`) or run `DeployArc.s.sol` as fallback; (4) generate six burner keys, fund the payer, fill `apps/web/.env.local` per `apps/web/README.md`. Then the next session runs the Arc Testnet golden path and captures Arcscan evidence.
+Founder, in order — env files are pre-generated and gitignored (`apps/web/.env.local` + `contracts/.env`, burner keys already inside; addresses listed in the file comments):
+(1) submit Checkpoint 2 (`CHECKPOINT2.md` — can now claim: contract + 74 tests + security review + working local demo);
+(2) fund two burner addresses with Arc Testnet USDC at https://faucet.circle.com — payer `0x760F5d9AeE71c4386838798a11BA90D59ff7BeCA` and deployer `0x170d0D33f50ec0F3a70Fe88f30d5C98910Dad52b`;
+(3) deploy: Circle Contracts console (blockchain `ARC-TESTNET`, bytecode/ABI from `contracts/out` + `packages/shared/abi`) or fallback `forge script script/DeployArc.s.sol --rpc-url https://rpc.testnet.arc.network --broadcast` (reads `contracts/.env`);
+(4) in `apps/web/.env.local`: fill the two FILL_ME slots (escrow address, deploy block), flip Profile 1 → Profile 2;
+(5) optionally add `CIRCLE_API_KEY`/`CIRCLE_APP_ID` from https://console.circle.com for the wallet integration.
+Then the next session runs the Arc Testnet golden path and captures Arcscan evidence.
 
 Repository: https://github.com/ADxZimmy/ParcFi
 Local toolchain: Foundry v1.7.1 installed at `~/.foundry/bin` (add to PATH: `export PATH="$HOME/.foundry/bin:$PATH"`). Dependencies vendored in `contracts/lib/` (gitignored; re-clone with the two `git clone` commands in the CI workflow).
