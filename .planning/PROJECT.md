@@ -46,7 +46,7 @@ ParcFi settles freight-service invoice obligations. It is not:
 
 ## Constraints
 
-- Hackathon Checkpoint 2 is due 2026-07-26; final submission is due 2026-08-09 Anywhere on Earth. Internal final deadline: 2026-08-08 18:00 WAT.
+- Hackathon Checkpoint 2 is due 2026-07-27 12:59 WAT (corrected 2026-07-27 from the live form; previously assumed 2026-07-26); final submission is due 2026-08-09 Anywhere on Earth. Internal final deadline: 2026-08-08 18:00 WAT.
 - Arc is currently public testnet; mainnet and production addresses are not yet public.
 - Arc privacy is not available. Amounts, addresses, and contract state are public.
 - The MVP must use test assets and synthetic freight documents only.

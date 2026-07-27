@@ -1,6 +1,10 @@
-# Checkpoint 2 Submission (due Sunday 2026-07-26)
+# Checkpoint 2 Submission
+
+Deadline correction 2026-07-27: the live submission form shows **Monday, July 27, 2026, 12:59 PM (Africa/Lagos)** — not Sunday the 26th as first planned. Form fields: Link to Code (required), Link to Presentation (required — "Google Slides, DocSend, Canva"), track selection (DeFi / Agentic Economy, multi-select).
 
 Confirmed requirement (hackathon FAQ): "A mid-hackathon progress update with your repo and presentation links." Checkpoints 1 and 2 may be placeholders/works-in-progress; only the final checkpoint must be complete.
+
+Presentation deck: `docs/ParcFi-Checkpoint2.pptx` (10 slides, built 2026-07-27). To get a link: upload to Google Drive → Open with Google Slides → Share → "Anyone with the link: Viewer" → copy link.
 
 ## Founder actions (in order)
 
